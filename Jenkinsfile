@@ -58,7 +58,21 @@ pipeline{
                   sh 'mvn package'
               }
           }
-	     
-          
+	      
+          stage('Build Image'){
+		  
+              steps{
+		  
+                  sh 'sudo docker build -t myimage:$BUILD_NUMBER .'
+              }
+          } 
+          stage('Push image to docker registry'){
+		  
+              steps{
+		  
+                  sh 'sudo docker login -u phanminhlam -p Phanminhlam1@'
+		  sh 'sudo docker push phanminhlam/myimage:$BUILD_NUMBER'
+              }
+          } 
       }
 }
