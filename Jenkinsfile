@@ -63,15 +63,15 @@ pipeline{
 		  
               steps{
 		  
-                  sh 'sudo docker build -t myimage:$BUILD_NUMBER .'
+                  sh 'docker build -t myimage:$BUILD_NUMBER .'
               }
           } 
           stage('Push image to docker registry'){
 		  
               steps{
 		  
-                  sh 'sudo docker login -u phanminhlam -p Phanminhlam1@'
-		  sh 'sudo docker push phanminhlam/myimage:$BUILD_NUMBER'
+                  sh 'docker login -u phanminhlam -p Phanminhlam1@'
+		  sh 'docker push phanminhlam/myimage:$BUILD_NUMBER'
               }
           } 
       }
