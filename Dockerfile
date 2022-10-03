@@ -1,4 +1,5 @@
-From tomcat:9-jre11
+FROM tomcat:9-jre11
 ADD addressbook.war /usr/local/tomcat/webapps
 EXPOSE 8082
+CMD ["/bin/sh"]
 CMD ["catalina.sh", "run"]
