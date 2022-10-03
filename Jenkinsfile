@@ -63,7 +63,7 @@ pipeline{
 		  
               steps{
 		  
-                  sh 'docker build -t myimage:$BUILD_NUMBER .'
+                  sh 'docker build -t phmyimage:$BUILD_NUMBER .'
               }
           } 
           stage('Push image to docker registry'){
