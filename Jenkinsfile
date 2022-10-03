@@ -74,7 +74,7 @@ pipeline{
 		  sh 'docker push phanminhlam/myimage:$BUILD_NUMBER'
               }
           }
-	withCredentials([sshUserPrivateKey(credentialsId: 'sshslave', keyFileVariable: 'setcret-ssh')]) {
+	withCredentials(bindings:[sshUserPrivateKey(credentialsId: 'sshslave', keyFileVariable: 'setcret-ssh')]) {
 	 stage('SSH server to deploy'){		  
               steps{
 			sh 'ssh root@172.31.31.158'
@@ -84,5 +84,5 @@ pipeline{
 	      	}
              }
           }
-      }
+      
 }
