@@ -78,7 +78,7 @@ pipeline{
 	 stage('SSH server to deploy'){		  
               steps{
 		      withCredentials(bindings:[sshUserPrivateKey(credentialsId: 'sshslave', keyFileVariable: 'setcret-ssh')]) {
-// 			sh 'ssh root@172.31.31.158'
+			sh 'ssh root@172.31.31.158'
                    	sh 'docker login -u phanminhlam -p Phanminhlam1@'
 		  	sh 'docker pull phanminhlam/myimage:$BUILD_NUMBER'
 		  	sh 'docker run -d phanminhlam/myimage:$BUILD_NUMBER'
