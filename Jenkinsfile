@@ -76,7 +76,7 @@ pipeline{
           }
           stage('SSH server to deploy'){		  
               steps{
-		  withCredentials([sshUserPrivateKey(credentialsId: 'sshslave', usernameVariable: 'root')]) {
+		  withCredentials([sshUserPrivateKey(credentialsId: 'sshslave', usernameVariable: '', keyFileVariable: '', passphraseVariable: '')]) {
 			sh 'ssh root@172.31.31.158'
                    	sh 'docker login -u phanminhlam -p Phanminhlam1@'
 		  	sh 'docker pull phanminhlam/myimage:$BUILD_NUMBER'
