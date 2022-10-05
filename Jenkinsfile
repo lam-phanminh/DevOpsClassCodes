@@ -77,7 +77,7 @@ pipeline{
 	
           stage('DeploytoDevelopment') {
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key-slave1', keyFileVariable: 'ssh-key-slave1')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'slave1-key', keyFileVariable: 'SETCRET')]) {
                     sshPublisher(
                       publishers: [
                         sshPublisherDesc(
@@ -85,7 +85,7 @@ pipeline{
                           sshCredentials: [
                             // encryptedPassphrase: '{AQAAABAAAAAQmZpJBQL228Xgi6SrPRMu1dQRuXsdYcq4LR/7X3t6y+c=}', 
                             // keyPath: '/var/lib/jenkins/slave-privatekey', 
-                            key: '$setcret-ssh',
+                            key: '$SETCRET',
                             username: 'root'
                             ], 
                           transfers: [
