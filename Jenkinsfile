@@ -77,14 +77,14 @@ pipeline{
 	
           stage('DeploytoDevelopment') {
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'sshslave', keyFileVariable: 'setcret-ssh')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key-slave1', keyFileVariable: 'ssh-key-slave1')]) {
                     sshPublisher(
                       publishers: [
                         sshPublisherDesc(
                           configName: 'slave1', 
                           sshCredentials: [
                             // encryptedPassphrase: '{AQAAABAAAAAQmZpJBQL228Xgi6SrPRMu1dQRuXsdYcq4LR/7X3t6y+c=}', 
-                            keyPath: '/var/lib/jenkins/slave-privatekey', 
+                            // keyPath: '/var/lib/jenkins/slave-privatekey', 
                             key: '$setcret-ssh',
                             username: 'root'
                             ], 
