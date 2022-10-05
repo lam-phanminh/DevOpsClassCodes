@@ -71,19 +71,32 @@ pipeline{
               steps{
 		  
                   sh 'docker login -u phanminhlam -p Phanminhlam1@'
-		  sh 'docker push phanminhlam/myimage:$BUILD_NUMBER'
+		          sh 'docker push   '
               }
           }
 	
-	 stage('SSH server to deploy'){		  
-              steps{
-		      withCredentials(bindings:[sshUserPrivateKey(credentialsId: 'sshslave', keyFileVariable: 'setcret-ssh')]) {
-			sh 'ssh root@172.31.31.158'
-                   	sh 'docker login -u phanminhlam -p Phanminhlam1@'
-		  	sh 'docker pull phanminhlam/myimage:$BUILD_NUMBER'
-		  	sh 'docker run -d phanminhlam/myimage:$BUILD_NUMBER'
-	      	}
-             }
-          }
+        stage('DeploytoDevelopment') {
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'sshslave', keyFileVariable: '/var/lib/jenkins/slave-privatekey')]) {
+                    sshPublisher(
+                      publishers: [
+                        sshPublisherDesc(
+                          configName: 'slave1', 
+                          sshCredentials: [
+                            // encryptedPassphrase: '{AQAAABAAAAAQmZpJBQL228Xgi6SrPRMu1dQRuXsdYcq4LR/7X3t6y+c=}', 
+                            keyPath: '/var/lib/jenkins/slave-privatekey', 
+                            username: 'root'
+                            ], 
+                          transfers: [
+                            sshTransfer(
+                              execCommand: 'docker login -u phanminhlam -p Phanminhlam1@ && docker pull phanminhlam/myimage:$BUILD_NUMBER && docker run -d phanminhlam/myimage:$BUILD_NUMBER'
+                              )
+                            ]
+                        )
+                      ]
+                    )
+                }
+            }
+        }
       }
 }
