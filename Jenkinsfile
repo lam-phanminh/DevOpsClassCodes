@@ -71,11 +71,11 @@ pipeline{
               steps{
 		  
                   sh 'docker login -u phanminhlam -p Phanminhlam1@'
-		          sh 'docker push   '
+		          sh 'docker push phanminhlam/myimage:$BUILD_NUMBER'
               }
           }
 	
-        stage('DeploytoDevelopment') {
+          stage('DeploytoDevelopment') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'sshslave', keyFileVariable: '/var/lib/jenkins/slave-privatekey')]) {
                     sshPublisher(
