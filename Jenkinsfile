@@ -79,18 +79,19 @@ pipeline{
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'slave1-key', keyFileVariable: 'SETCRET')]) {
                     sshPublisher(
+                      failOnError: true,
+                      continueOnError: false,
                       publishers: [
                         sshPublisherDesc(
                           configName: 'slave1', 
                           sshCredentials: [
-                            // encryptedPassphrase: '{AQAAABAAAAAQmZpJBQL228Xgi6SrPRMu1dQRuXsdYcq4LR/7X3t6y+c=}', 
                             keyPath: '/var/lib/jenkins/slave-privatekey', 
-                            // key: '$SETCRET',
                             username: 'root'
                             ], 
                           transfers: [
                             sshTransfer(
-                              execCommand: 'docker login -u phanminhlam -p Phanminhlam1@ && docker pull phanminhlam/myimage:$BUILD_NUMBER && docker run -d phanminhlam/myimage:$BUILD_NUMBER'
+                            //   execCommand: 'docker login -u phanminhlam -p Phanminhlam1@ && docker pull phanminhlam/myimage:$BUILD_NUMBER && docker run -d phanminhlam/myimage:$BUILD_NUMBER'
+                                execCommand: 'echo "abcccccccccc"'
                               )
                             ]
                         )
