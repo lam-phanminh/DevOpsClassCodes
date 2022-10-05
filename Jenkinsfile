@@ -90,8 +90,8 @@ pipeline{
                             ], 
                           transfers: [
                             sshTransfer(
-                            //   execCommand: 'docker login -u phanminhlam -p Phanminhlam1@ && docker pull phanminhlam/myimage:$BUILD_NUMBER && docker run -d phanminhlam/myimage:$BUILD_NUMBER'
-                                execCommand: 'echo "abcccccccccc"'
+                              execCommand: 'docker login -u phanminhlam -p Phanminhlam1@ && docker pull phanminhlam/myimage:$BUILD_NUMBER && docker run -d phanminhlam/myimage:$BUILD_NUMBER'
+                                // execCommand: 'echo "abcccccccccc"'
                               )
                             ]
                         )
