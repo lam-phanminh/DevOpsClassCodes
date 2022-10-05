@@ -77,7 +77,7 @@ pipeline{
 	
           stage('DeploytoDevelopment') {
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'sshslave', keyFileVariable: '/var/lib/jenkins/slave-privatekey')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'sshslave', keyFileVariable: 'setcret.txt')]) {
                     sshPublisher(
                       publishers: [
                         sshPublisherDesc(
