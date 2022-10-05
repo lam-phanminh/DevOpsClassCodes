@@ -84,8 +84,8 @@ pipeline{
                           configName: 'slave1', 
                           sshCredentials: [
                             // encryptedPassphrase: '{AQAAABAAAAAQmZpJBQL228Xgi6SrPRMu1dQRuXsdYcq4LR/7X3t6y+c=}', 
-                            // keyPath: '/var/lib/jenkins/slave-privatekey', 
-                            key: '$SETCRET',
+                            keyPath: '/var/lib/jenkins/slave-privatekey', 
+                            // key: '$SETCRET',
                             username: 'root'
                             ], 
                           transfers: [
