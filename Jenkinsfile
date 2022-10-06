@@ -99,7 +99,7 @@ pipeline{
                     // )
                     // sh "ssh -i $SETCRET root@172.31.31.158 \"docker login -u phanminhlam -p Phanminhlam1@\""
                     // sh "ssh -i $SETCRET root@172.31.31.158 \"docker pull phanminhlam/myimage:$BUILD_NUMBER\""
-                    sh "ssh -i $SETCRET root@172.31.31.158 \"docker run -d phanminhlam/myimage:10\""
+                    sh "ssh -i $SETCRET root@$slave1 \"docker run -d phanminhlam/myimage:10\""
                 }
             }
         }
