@@ -78,25 +78,27 @@ pipeline{
           stage('DeploytoDevelopment') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'slave1-key', keyFileVariable: 'SETCRET')]) {
-                    sshPublisher(
-                      failOnError: true,
-                      continueOnError: false,
-                      publishers: [
-                        sshPublisherDesc(
-                          configName: 'slave1', 
-                          sshCredentials: [
-                            keyPath: '/var/lib/jenkins/slave-privatekey', 
-                            username: 'root'
-                            ], 
-                          transfers: [
-                            sshTransfer(
-                              execCommand: 'docker login -u phanminhlam -p Phanminhlam1@ && docker pull phanminhlam/myimage:$BUILD_NUMBER && docker run -d phanminhlam/myimage:$BUILD_NUMBER'
-                                // execCommand: 'echo "abcccccccccc"'
-                              )
-                            ]
-                        )
-                      ]
-                    )
+                    // sshPublisher(
+                    //   failOnError: true,
+                    //   continueOnError: false,
+                    //   publishers: [
+                    //     sshPublisherDesc(
+                    //       configName: 'slave1', 
+                    //       sshCredentials: [
+                    //         keyPath: '/var/lib/jenkins/slave-privatekey', 
+                    //         username: 'root'
+                    //         ], 
+                    //       transfers: [
+                    //         sshTransfer(
+                    //           execCommand: 'docker login -u phanminhlam -p Phanminhlam1@ && docker pull phanminhlam/myimage:$BUILD_NUMBER && docker run -d phanminhlam/myimage:$BUILD_NUMBER'
+                    //             // execCommand: 'echo "abcccccccccc"'
+                    //           )
+                    //         ]
+                    //     )
+                    //   ]
+                    // )
+                    sh "ssh root@slave1 \" echo abcccccc\""
+
                 }
             }
         }
