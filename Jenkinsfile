@@ -97,7 +97,7 @@ pipeline{
                     //     )
                     //   ]
                     // )
-                    sh "ssh root@172.31.31.158 \" echo abcccccc\""
+                    sh "ssh -i $SETCRET root@172.31.31.158 \" echo abcccccc\""
 
                 }
             }
