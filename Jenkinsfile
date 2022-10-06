@@ -13,33 +13,33 @@ pipeline{
                  git 'https://github.com/devops-learner01012022/DevOpsClassCodes.git'
               }
           }
-          stage('Compile'){
+        //   stage('Compile'){
              
-              steps{
-                  echo 'compiling..'
-                  sh 'mvn compile'
-	      }
-          }
-          stage('CodeReview'){
+        //       steps{
+        //           echo 'compiling..'
+        //           sh 'mvn compile'
+	    //   }
+        //   }
+        //   stage('CodeReview'){
 		  
-              steps{
+        //       steps{
 		    
-		  echo 'codeReview'
-                 // sh 'mvn pmd:pmd'
-              }
-          }
-           stage('UnitTest'){
+		//   echo 'codeReview'
+        //          // sh 'mvn pmd:pmd'
+        //       }
+        //   }
+        //    stage('UnitTest'){
 		  
-              steps{
+        //       steps{
 	         
-                  sh 'mvn test'
-              }
-               post {
-               success {
-                   junit 'target/surefire-reports/*.xml'
-               }
-           }	
-          }
+        //           sh 'mvn test'
+        //       }
+        //        post {
+        //        success {
+        //            junit 'target/surefire-reports/*.xml'
+        //        }
+        //    }	
+        //   }
 //            stage('MetricCheck'){
               
 //               steps{
@@ -51,29 +51,29 @@ pipeline{
 //                }
 //            }		
 //           }
-          stage('Package'){
+        //   stage('Package'){
 		  
-              steps{
+        //       steps{
 		  
-                  sh 'mvn package'
-              }
-          }
+        //           sh 'mvn package'
+        //       }
+        //   }
 	      
-          stage('Build Image'){
+        //   stage('Build Image'){
 		  
-              steps{
+        //       steps{
 		  
-                  sh 'docker build -t phanminhlam/myimage:$BUILD_NUMBER .'
-              }
-          } 
-          stage('Push image to docker registry'){
+        //           sh 'docker build -t phanminhlam/myimage:$BUILD_NUMBER .'
+        //       }
+        //   } 
+        //   stage('Push image to docker registry'){
 		  
-              steps{
+        //       steps{
 		  
-                  sh 'docker login -u phanminhlam -p Phanminhlam1@'
-		          sh 'docker push phanminhlam/myimage:$BUILD_NUMBER'
-              }
-          }
+        //           sh 'docker login -u phanminhlam -p Phanminhlam1@'
+		//           sh 'docker push phanminhlam/myimage:$BUILD_NUMBER'
+        //       }
+        //   }
 	
           stage('DeploytoDevelopment') {
             steps {
